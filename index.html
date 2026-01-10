@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope & Health | Early Detection Matters</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .parallax { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
+        .bg-gradient-medical { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); }
+
+        /* Quote animations and styling */
+        .quote { opacity: 0; animation: quoteFadeUp 900ms ease forwards; animation-delay: 300ms; }
+        @keyframes quoteFadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .quote::first-letter {
+            color: #60a5fa; /* changed first-letter color */
+            font-weight: 800;
+            font-size: 1.2em;
+            display: inline-block;
+            animation: firstPop 800ms cubic-bezier(.2,.9,.3,1);
+        }
+        @keyframes firstPop {
+            0% { transform: scale(.6) rotate(-10deg); opacity: 0; }
+            60% { transform: scale(1.15) rotate(3deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+
+        /* Animated underline */
+        .header-underline {
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #60a5fa 0%, #34d399 100%);
+            margin: 0 auto;
+            border-radius: 9999px;
+            animation: expandLine 900ms forwards 600ms;
+        }
+        @keyframes expandLine { to { width: 6rem; } }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-white to-blue-50 text-slate-900 scroll-smooth overflow-x-hidden">
+
+    <header class="h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 to-slate-800 text-white px-6 relative">
+        <div class="max-w-3xl text-center space-y-6" data-aos="zoom-in" data-aos-duration="1500">
+            <h1 class="text-3xl md:text-6xl font-serif italic mb-4 quote" data-aos="fade-up">
+                "Early detection doesn't just find a problem; it provides the luxury of time."
+            </h1>
+            <div class="header-underline h-1 mx-auto mb-6"></div>
+            <p class="text-blue-300 tracking-widest uppercase text-sm font-bold">Scroll down to start your health journey</p>
+            <div class="animate-bounce mt-10 text-3xl">↓</div>
+        </div>
+    </header>
+
+    <section class="py-24 bg-blue-50 px-6 text-center" id="probability">
+        <div class="max-w-xl mx-auto" data-aos="fade-up">
+            <h2 class="text-3xl font-bold mb-4">Quick 7-Question Probability Check</h2>
+            <p class="mb-10 text-slate-600">A rapid assessment based on general risk factors.</p>
+            
+            <div id="quiz-container" class="bg-white p-10 rounded-3xl shadow-2xl border border-blue-100">
+                <div id="question-box">
+                    <p id="question-text" class="text-xl font-semibold mb-6 text-slate-700">Ready to take the first step?</p>
+                    <button onclick="startQuiz()" class="bg-blue-600 text-white px-10 py-4 rounded-full font-bold hover:bg-blue-700 transition-all transform hover:scale-105">
+                        Start Quick Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 max-w-7xl mx-auto" id="types">
+        <h2 class="text-3xl font-bold text-center mb-4" data-aos="fade-up">Major Cancer Types</h2>
+        <p class="text-center text-slate-500 mb-16" data-aos="fade-up">Early detection methods for the most common diagnoses.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-8 border rounded-2xl hover:shadow-xl transition-all group" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mb-4 text-pink-600 font-bold">01</div>
+                <h3 class="text-2xl font-bold text-pink-600 mb-3">Breast Cancer</h3>
+                <p class="text-slate-600 leading-relaxed">Monthly self-exams and annual mammograms for those over 40 are the primary defense.</p>
+            </div>
+            <div class="p-8 border rounded-2xl hover:shadow-xl transition-all group" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 text-blue-600 font-bold">02</div>
+                <h3 class="text-2xl font-bold text-blue-600 mb-3">Colorectal</h3>
+                <p class="text-slate-600 leading-relaxed">Screening via colonoscopy or stool-based tests should typically begin at age 45.</p>
+            </div>
+            <div class="p-8 border rounded-2xl hover:shadow-xl transition-all group" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mb-4 text-teal-600 font-bold">03</div>
+                <h3 class="text-2xl font-bold text-teal-600 mb-3">Lung Cancer</h3>
+                <p class="text-slate-600 leading-relaxed">Annual low-dose CT scans are recommended for long-term smokers between 50-80.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 text-white" id="assessment-section">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div data-aos="fade-down">
+                <h2 class="text-4xl font-bold mb-6">Interactive Self-Assessment</h2>
+                <p class="mb-12 text-slate-400 max-w-2xl mx-auto">Select a body region to check for specific clinical red flags. This tool helps you prepare for a doctor's visit.</p>
+            </div>
+            
+            <div id="assessment-ui" class="bg-white text-slate-900 p-8 md:p-12 rounded-3xl shadow-2xl text-left" data-aos="zoom-in">
+                <div id="assessment-content">
+                    <h3 class="text-2xl font-bold mb-8 text-center text-slate-800">Where are you feeling symptoms?</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <button onclick="selectRegion('head')" class="p-6 border-2 border-slate-100 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition-all flex flex-col items-center group">
+                            <span class="text-4xl mb-3 group-hover:scale-110 transition">👤</span>
+                            <span class="font-bold">Head & Neck</span>
+                        </button>
+                        <button onclick="selectRegion('chest')" class="p-6 border-2 border-slate-100 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition-all flex flex-col items-center group">
+                            <span class="text-4xl mb-3 group-hover:scale-110 transition">🫁</span>
+                            <span class="font-bold">Chest & Lungs</span>
+                        </button>
+                        <button onclick="selectRegion('abdomen')" class="p-6 border-2 border-slate-100 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition-all flex flex-col items-center group">
+                            <span class="text-4xl mb-3 group-hover:scale-110 transition">🍱</span>
+                            <span class="font-bold">Abdomen</span>
+                        </button>
+                        <button onclick="selectRegion('skin')" class="p-6 border-2 border-slate-100 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition-all flex flex-col items-center group">
+                            <span class="text-4xl mb-3 group-hover:scale-110 transition">✋</span>
+                            <span class="font-bold">Skin</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t py-20 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16" data-aos="fade-up">
+            <div>
+                <h3 class="font-bold text-2xl mb-6 text-blue-700">EarlyDetect</h3>
+                <p class="text-slate-500 leading-relaxed italic">"Empowering individuals through knowledge and early action. Your health is your most valuable asset."</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-lg mb-6 border-b pb-2">Medical Directory</h4>
+                <ul class="space-y-4 text-slate-600">
+                    <li class="flex items-center"><span class="mr-3">👨‍⚕️</span> Dr. Sarah Chen - Oncology</li>
+                    <li class="flex items-center"><span class="mr-3">👩‍⚕️</span> Dr. Marcus Vane - Diagnostics</li>
+                    <li class="flex items-center"><span class="mr-3">📍</span> City General Screening Hub</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-lg mb-6 border-b pb-2">Contact & Help</h4>
+                <p class="text-blue-600 font-bold text-3xl mb-2">1-800-DETECTION</p>
+                <p class="text-slate-500 mb-6">Available Mon-Fri, 9am - 5pm</p>
+
+                <div class="mt-6 bg-indigo-50 border border-indigo-100 p-4 rounded-lg">
+                    <p class="text-lg font-bold text-indigo-800 mb-1">Disclaimer: This website provides general information and recommendations only.</p>
+                    <p class="text-sm text-indigo-700">We do not provide direct medical consultations — please see a qualified healthcare professional for diagnosis and further checkups.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // --- 7 QUESTION QUIZ LOGIC ---
+        const questions = [
+            "Are you over the age of 45?",
+            "Do you have a family history of cancer?",
+            "Are you a regular smoker or ex-smoker?",
+            "Have you noticed unexplained weight loss?",
+            "Do you experience persistent fatigue?",
+            "Have you noticed any new lumps or skin changes?",
+            "Do you have a persistent cough or voice change?"
+        ];
+        let currentStep = 0;
+        let score = 0;
+
+        function startQuiz() { renderQuestion(); }
+
+        function renderQuestion() {
+            const box = document.getElementById('question-box');
+            if (currentStep < questions.length) {
+                box.innerHTML = `
+                    <p class="text-xs font-bold text-blue-500 uppercase mb-2 tracking-widest">Question ${currentStep + 1} of 7</p>
+                    <p class="text-2xl font-bold mb-8 text-slate-800">${questions[currentStep]}</p>
+                    <div class="flex justify-center gap-6">
+                        <button onclick="next(1)" class="bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700 transition w-32">Yes</button>
+                        <button onclick="next(0)" class="bg-slate-100 text-slate-700 px-8 py-3 rounded-xl hover:bg-slate-200 transition w-32">No</button>
+                    </div>
+                `;
+            } else { showResult(); }
+        }
+
+        function next(point) { score += point; currentStep++; renderQuestion(); }
+
+        function showResult() {
+            const box = document.getElementById('question-box');
+            let message = score > 3 ? "Recommendation: High Risk. Please schedule a preventative screening." : "Recommendation: Lower Risk. Maintain routine annual check-ups.";
+            box.innerHTML = `
+                <h3 class="text-3xl font-bold mb-4 ${score > 3 ? 'text-red-600' : 'text-emerald-600'}">Quiz Complete</h3>
+                <p class="text-lg text-slate-700 mb-8 leading-relaxed">${message}</p>
+                <button onclick="location.reload()" class="bg-slate-900 text-white px-8 py-3 rounded-full hover:bg-black transition">Retake Quiz</button>
+            `;
+        }
+
+        // --- SELF-ASSESSMENT LOGIC ---
+        const symptomData = {
+            head: { title: "Head & Neck", questions: ["Sores that don't heal?", "Trouble swallowing?", "New neck lumps?", "Voice hoarseness?"], advice: "Consult an ENT specialist or Dentist." },
+            chest: { title: "Chest & Lungs", questions: ["Cough > 3 weeks?", "Coughing blood?", "Shortness of breath?", "Persistent chest pain?"], advice: "Immediate consultation with a Pulmonologist recommended." },
+            abdomen: { title: "Abdomen", questions: ["Blood in stool?", "Persistent bloating?", "Unexplained stomach pain?", "Feeling full too quickly?"], advice: "Discuss symptoms with a Gastroenterologist." },
+            skin: { title: "Skin", questions: ["Changing mole shape?", "Sore that bleeds/crusts?", "New dark nail spots?", "Under-skin lumps?"], advice: "A Dermatologist should review these skin changes." }
+        };
+
+        function selectRegion(region) {
+            const data = symptomData[region];
+            let questionsHtml = data.questions.map((q, i) => `
+                <div class="flex items-center mb-4 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <input type="checkbox" id="q${i}" class="w-6 h-6 text-blue-600 rounded">
+                    <label for="q${i}" class="ml-4 text-slate-700 font-medium">${q}</label>
+                </div>
+            `).join('');
+
+            document.getElementById('assessment-content').innerHTML = `
+                <button onclick="location.href='#assessment-section'; location.reload();" class="text-blue-600 font-bold mb-6 flex items-center">← Back to Regions</button>
+                <h3 class="text-3xl font-bold mb-2">${data.title} Assessment</h3>
+                <p class="text-slate-500 mb-8">Select any symptoms you are currently experiencing:</p>
+                <div class="grid md:grid-cols-2 gap-4 mb-8">${questionsHtml}</div>
+                <button onclick="getAssessmentResult('${region}')" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-bold text-xl hover:bg-blue-700 transition shadow-xl">Submit My Report</button>
+            `;
+        }
+
+        function getAssessmentResult(region) {
+            const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+            const data = symptomData[region];
+            document.getElementById('assessment-content').innerHTML = `
+                <div class="text-center py-10">
+                    <div class="text-6xl mb-6">${checked.length > 0 ? '⚠️' : '✅'}</div>
+                    <h3 class="text-3xl font-bold mb-4">${checked.length > 0 ? 'Clinical Review Suggested' : 'No Immediate Red Flags'}</h3>
+                    <p class="text-xl text-slate-600 mb-8">${data.advice}</p>
+                    <button onclick="location.reload()" class="bg-slate-900 text-white px-10 py-4 rounded-full font-bold">Return to Main</button>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
