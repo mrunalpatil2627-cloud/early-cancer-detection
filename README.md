@@ -25,16 +25,7 @@ Animations: AOS (Animate On Scroll) Library for a professional, comforting UI.
 
 Architecture: Stateless & Privacy-First. No backend database is used; all logic is processed locally in the browser to ensure 100% user data privacy.
 
- Project Structure
-Plaintext
-
-├── index.html          # Main landing page & Awareness Hub
-├── css/
-│   └── style.css       # Custom styling and AOS configurations
-├── js/
-│   └── script.js      # Core assessment logic (7-question check & body mapping)
-└── assets/             # Images and icons
-🔮 Future Scope
+ Future Scope
 PWA Support: Enable offline access for users in low-connectivity areas.
 
 Multilingual Interface: Support for regional languages to reach a broader demographic.
